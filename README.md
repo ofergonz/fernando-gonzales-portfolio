@@ -40,7 +40,7 @@ Os projetos são apresentados sem dados corporativos, informações pessoais ou 
 **Bacharelado em Sistemas de Informação**, XP Educação  
 Conclusão prevista: dezembro de 2026. Bolsa integral por mérito.
 
-Formação complementar em back-end, front-end, desenvolvimento web, banco de dados e inteligência artificial.
+Formação complementar em back-end, front-end, desenvolvimento web, banco de dados e infraestrutura.
 
 ---
 
