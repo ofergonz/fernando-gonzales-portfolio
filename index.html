@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Portfólio de Fernando Gonzales: automação de processos e IA aplicada a logística, com Excel, Office Scripts e Power Automate.">
+<meta property="og:title" content="Portfólio Fernando Gonzales">
+<meta property="og:description" content="Automação de processos e IA aplicada a logística. Projetos reais, método de trabalho e ferramentas.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ofergonz.github.io/fernando-gonzales-portfolio/">
+<meta name="theme-color" content="#0d6b74">
+<title>Portfólio Fernando Gonzales</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: single reading column, numbered project sheets with a problem/action/validation spine. */
+:root{
+  --bg:#f5f6f4; --surface:#ffffff; --ink:#16212b; --muted:#566574; --line:#d9dfe3;
+  --accent:#0d6b74; --accent-soft:#e0f0f1; --warn:#8a5a00; --warn-soft:#fbf0d9;
+  --display:'Newsreader',Georgia,serif; --body:'IBM Plex Sans',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f161c; --surface:#16202a; --ink:#e7edf1; --muted:#9aabb8; --line:#273542;
+    --accent:#5cc3cc; --accent-soft:#12303a; --warn:#e5b95c; --warn-soft:#2c2412; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f161c; --surface:#16202a; --ink:#e7edf1; --muted:#9aabb8; --line:#273542;
+  --accent:#5cc3cc; --accent-soft:#12303a; --warn:#e5b95c; --warn-soft:#2c2412; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6}
+.wrap{max-width:780px;margin:0 auto;padding:40px 20px 72px}
+header{padding-bottom:28px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:var(--mono);font-size:12.5px;color:var(--accent);letter-spacing:.04em;margin:0 0 10px}
+h1{font-family:var(--display);font-weight:600;font-size:clamp(34px,6vw,48px);line-height:1.1;margin:0 0 14px;text-wrap:balance}
+.lead{font-size:18px;color:var(--ink);max-width:62ch;margin:0 0 18px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;color:var(--muted);margin:0}
+.meta a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--line)}
+.meta a:hover{border-bottom-color:var(--accent)}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0}
+nav a{font-size:13.5px;color:var(--ink);text-decoration:none;border:1px solid var(--line);background:var(--surface);padding:5px 12px;border-radius:999px}
+nav a:hover{border-color:var(--accent);color:var(--accent)}
+nav a:focus-visible,a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section{margin-top:44px}
+h2{font-family:var(--display);font-weight:600;font-size:28px;margin:0 0 6px;text-wrap:balance}
+.sub{color:var(--muted);margin:0 0 18px;font-size:15px}
+.sheet{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px 22px 8px;margin-top:16px}
+.tag{display:inline-block;font-family:var(--mono);font-size:12px;padding:2px 9px;border-radius:4px;background:var(--accent-soft);color:var(--accent);margin:0 6px 6px 0}
+.tag.warn{background:var(--warn-soft);color:var(--warn)}
+.row{display:grid;grid-template-columns:120px 1fr;gap:6px 18px;padding:14px 0;border-top:1px solid var(--line)}
+.row:first-of-type{border-top:0}
+.row h3{margin:0;font-family:var(--mono);font-size:12.5px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;padding-top:3px}
+.row p,.row ul{margin:0 0 8px}
+.row ul{padding-left:18px}
+.row li{margin-bottom:5px}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:6px 0 10px;font-size:13.5px}
+.flow div{background:var(--accent-soft);border-radius:6px;padding:9px 10px;line-height:1.35}
+.flow b{display:block;font-family:var(--mono);font-size:11.5px;color:var(--accent);margin-bottom:2px;font-weight:500}
+pre{background:#0f1a22;color:#d8e6ee;border-radius:8px;padding:14px 16px;font-family:var(--mono);font-size:13px;line-height:1.55;overflow-x:auto;margin:0 0 6px;white-space:pre-wrap}
+.copy{font-family:var(--body);font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:6px;padding:4px 12px;cursor:pointer}
+.copy:hover{border-color:var(--accent);color:var(--accent)}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:14px}
+.skills div{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+.skills h3{margin:0 0 8px;font-size:14px}
+.skills p{margin:0;font-size:14.5px;color:var(--muted)}
+.note{background:var(--warn-soft);color:var(--ink);border-left:3px solid var(--warn);padding:10px 14px;border-radius:4px;font-size:14.5px;margin:14px 0 0}
+footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+@media (max-width:600px){
+  .row{grid-template-columns:1fr;gap:2px}
+  .flow{grid-template-columns:1fr 1fr}
+  .sheet{padding:18px 16px 6px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">PORTFÓLIO · IA APLICADA E AUTOMAÇÃO</p>
+  <h1>Fernando Gonzales</h1>
+  <p class="lead">Estudante de Sistemas de Informação (conclusão em dezembro de 2026). Uso IA generativa para construir ferramentas de automação e análise que o time realmente usa no trabalho. Eu defino as regras, confiro o resultado e decido o que entra.</p>
+  <p class="meta">
+    <span>XP Educação · Bacharelado em Sistemas de Informação</span>
+    <span>Inglês C1 (EF SET)</span>
+    <a href="https://linkedin.com/in/gonzales-fernando">linkedin.com/in/gonzales-fernando</a>
+    <span>fernando.lgg@hotmail.com</span>
+  </p>
+  <nav aria-label="Seções">
+    <a href="#demurrage">1 · Automação de relatório</a>
+    <a href="#frete">2 · Simulador de frete</a>
+    <a href="#cotas">3 · Calculadora de cotas</a>
+    <a href="#metodo">Como uso IA</a>
+    <a href="#skills">Ferramentas</a>
+  </nav>
+</header>
+
+<section id="demurrage">
+  <h2>1 · Automação do relatório quinzenal de demurrage</h2>
+  <p class="sub">Excel · Office Scripts · Power Automate · IA generativa</p>
+  <div class="sheet">
+    <div class="row"><h3>Problema</h3><div>
+      <p>Demurrage é a taxa cobrada quando um container fica no porto além do tempo livre (free time). O acompanhamento estava espalhado em arquivos diferentes, e era difícil saber quantos containers estavam em aberto, quantos já tinham sido devolvidos e qual era o valor. O resumo para o financeiro era montado à mão.</p>
+    </div></div>
+    <div class="row"><h3>O que fiz</h3><div>
+      <ul>
+        <li>Estruturei uma planilha consolidada em Excel (tabela nativa, fórmulas que se expandem sozinhas) com um padrão único para Brasil e México, para o time inteiro preencher do mesmo jeito.</li>
+        <li>Defini as regras do cálculo: dias de demurrage = data de devolução (ou hoje, se ainda não devolveu) − chegada − free time, com diária por país. Container repetido conta uma vez e quem ainda está no free time fica fora do relatório.</li>
+        <li>O relatório separa <b>fechado</b> (devolvido, valor final) de <b>em andamento</b> (o valor continua subindo).</li>
+        <li>Com o Claude, escrevi um Office Script que lê a tabela e calcula direto das datas. Isso foi necessário porque o Power Automate lê o valor salvo no arquivo e não recalcula <code>TODAY()</code>.</li>
+        <li>Montei o fluxo no Power Automate: roda a cada 15 dias, executa o script e envia o resumo por e-mail, em inglês.</li>
+      </ul>
+      <div class="flow" aria-label="Fluxo da automação">
+        <div><b>1 · AGENDA</b>Fluxo dispara a cada 15 dias</div>
+        <div><b>2 · SCRIPT</b>Office Script lê a tabela e calcula</div>
+        <div><b>3 · RESUMO</b>Por país: em aberto, devolvidos, valores</div>
+        <div><b>4 · E-MAIL</b>Texto em inglês para gestão e financeiro</div>
+      </div>
+    </div></div>
+    <div class="row"><h3>Validação</h3><div>
+      <p>Testei o envio só para mim antes de incluir os destinatários. Revisei o código gerado, em vez de aceitar no automático, e conferi os resultados contra a planilha. A gestora pediu o formato brasileiro de números e eu confirmei com ela a moeda do relatório.</p>
+    </div></div>
+    <div class="row"><h3>Resultado</h3><div>
+      <p>O time passou a preencher a planilha, que cresceu com a contribuição de todos mantendo a estrutura original, e o relatório quinzenal deixou de ser montado manualmente.</p>
+    </div></div>
+  </div>
+  <p class="note">Por confidencialidade, esta página não mostra valores, diárias, nomes de colegas nem arquivos da empresa.</p>
+</section>
+
+<section id="frete">
+  <h2>2 · Simulador de rateio de frete</h2>
+  <p class="sub">Excel avançado · fórmulas · validação de dados · proteção de planilha</p>
+  <div class="sheet">
+    <div class="row"><h3>Problema</h3><div>
+      <p>Quando um embarque traz vários materiais, ratear o frete só pelo peso pode encarecer demais os materiais baratos e pesados. A equipe precisava comparar rateio por valor e por peso antes de padronizar a regra.</p>
+    </div></div>
+    <div class="row"><h3>O que fiz</h3><div>
+      <ul>
+        <li>Construí um simulador que mostra os dois métodos lado a lado, com a sugestão em verde, vermelho ou amarelo conforme a validade dos dados.</li>
+        <li>A sugestão segue o critério definido pela equipe: o método com o <b>menor impacto individual máximo</b>. Descartei um critério estatístico (dispersão) que eu mesmo tinha proposto, porque a regra de negócio era outra.</li>
+        <li>Incluí conversão de moeda com taxa editável. Zero, valor negativo e campo vazio são tratados como entrada inválida.</li>
+        <li>Protegi as fórmulas e liberei só as células de entrada. Há também uma aba de base de processos e uma de instruções.</li>
+      </ul>
+    </div></div>
+    <div class="row"><h3>Validação</h3><div>
+      <p>Usei IA para auditar as fórmulas. A equipe testou com casos reais e eu corrigi a cada rodada.</p>
+    </div></div>
+  </div>
+</section>
+
+<section id="cotas">
+  <h2>3 · Calculadora de cotas PCD e aprendizagem</h2>
+  <p class="sub"><span class="tag warn">EM ANDAMENTO</span>Planilha-modelo · Power Query · LGPD</p>
+  <div class="sheet">
+    <div class="row"><h3>Problema</h3><div>
+      <p>Uma colega do RH faz hoje, de forma muito manual, a análise de cotas legais em 24 CNPJs: pega a base de funcionários, adiciona colunas por PROCX e consolida CNPJ por CNPJ.</p>
+    </div></div>
+    <div class="row"><h3>Abordagem</h3><div>
+      <ul>
+        <li>Construir um modelo com <b>dados fictícios</b>, sem nenhum dado real de funcionário (LGPD). Peço só a estrutura: nomes de colunas, regras e o layout do quadro final.</li>
+        <li>Estrutura prevista: aba de parâmetros, abas de dados, uma aba de cálculo por CNPJ e um quadro final com "tem / precisa / saldo".</li>
+        <li>As regras (percentuais por faixa e lista de CBOs) serão validadas com o jurídico trabalhista antes de entrarem nas fórmulas.</li>
+      </ul>
+    </div></div>
+  </div>
+</section>
+
+<section id="metodo">
+  <h2>Como uso IA no dia a dia</h2>
+  <p class="sub">Três hábitos que mantenho em qualquer projeto.</p>
+  <div class="sheet">
+    <div class="row"><h3>Regras claras</h3><div>
+      <p>Eu escrevo o que a ferramenta deve fazer, o que não pode fazer e como saber se deu certo. Exemplo real, com o Claude Code no terminal, para renomear 38 comprovantes de uma pasta:</p>
+<pre id="prompt">Preciso renomear PDFs para um requerimento de atividades complementares.
+
+Regras:
+- Cada comprovante deve ter o número do ID da linha no começo do nome, no formato "ID.Título".
+
+O que fazer:
+1. NÃO mexa nos originais. Crie uma pasta "renomeados" e copie os arquivos para lá com o novo nome.
+2. Novo nome = ID + ponto + nome original sem a extensão, trocando "_" por espaços, mantendo acentos.
+3. Se algum arquivo da lista não existir, me avise e não pare o resto.
+4. No final, liste os arquivos criados e os que faltaram.</pre>
+      <button class="copy" type="button" id="copyBtn">Copiar prompt</button>
+    </div></div>
+    <div class="row"><h3>Conferência</h3><div>
+      <p>Não aceito sugestão no automático. Comparo com o resultado manual, testo com um destinatário só (eu) e discuto as regras com quem vai usar. Quando a IA errou uma fórmula ou um dado, o valor foi conferido na planilha antes de seguir.</p>
+    </div></div>
+    <div class="row"><h3>Pensamento crítico</h3><div>
+      <p>Escrevi uma análise sobre a alegação de que "95% dos projetos de IA falham", comparando o relatório original com as críticas feitas a ele e separando o que o dado sustenta do que foi extrapolado. Também apliquei o framework DSRP (distinções, sistemas, relações e perspectivas) a uma calculadora de rateio de frete.</p>
+    </div></div>
+  </div>
+</section>
+
+<section id="skills">
+  <h2>Ferramentas e nível</h2>
+  <p class="sub">Descrito do jeito que consigo defender numa entrevista técnica.</p>
+  <div class="skills">
+    <div><h3>No trabalho</h3><p>Excel avançado, Power Query, Power Automate, Office Scripts, Power BI (intermediário), SAP como usuário.</p></div>
+    <div><h3>IA generativa</h3><p>Engenharia de prompts, desenvolvimento assistido por IA com Claude e Claude Code, revisão e teste do que a IA gera.</p></div>
+    <div><h3>Programação e dados</h3><p>SQL (básico), Python (noções), HTML/CSS/JavaScript. Certificados de Back-end, Frontend, Web e Banco de Dados da XP Educação. Em evolução.</p></div>
+  </div>
+</section>
+
+<footer>Fernando Gonzales · Região de Campinas, São Paulo · Disponível para deslocamento e mudança.</footer>
+</div>
+
+<script>
+(function(){
+  var b=document.getElementById('copyBtn'), p=document.getElementById('prompt');
+  if(!b||!p) return;
+  b.addEventListener('click',function(){
+    var done=function(){ b.textContent='Copiado'; setTimeout(function(){b.textContent='Copiar prompt'},1800); };
+    try{ navigator.clipboard.writeText(p.innerText).then(done,function(){}); }catch(e){}
+  });
+})();
+</script>
+</body>
+</html>
